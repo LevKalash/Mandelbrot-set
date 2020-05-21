@@ -1,0 +1,87 @@
+@import "compass/css3";
+
+.top {
+  position: fixed;
+  display: block;
+  height: 60px;
+  background-color: darkblue;
+  border-bottom: 1px solid #444857;
+  width: 100%;
+  top: 0;
+  left: 0;
+  outline: 1px solid #040194;
+  z-index: 1;}
+.top > img {
+	display: inline-block;
+  	height: 60px;
+  	top: 0; 
+  	left: 0;}
+.top > h1 { 
+	display: block;
+	position: fixed;
+	font-family: sans-serif;
+	left: 30%;
+	top: -2%;
+	color: #e6c139;
+	-webkit-text-stroke: 1px #000;}
+.top > h2 {
+	display: block;
+	position: fixed;
+	font-family: sans-serif;
+	text-align: right;
+	right: 1%;
+	top: -1%;}
+a {
+	-webkit-text-stroke: 1px #000;
+	text-decoration: none;}
+body {
+    background-image: url(img/bg.png);
+    background-size: 100%; 
+    background-color: #c7b39b;}
+.squad-button {
+	position: absolute;
+	width: 40%;
+	height: 30%;
+
+  	border-radius: 4px;
+  	box-shadow: 0 4px 8px 0 rgba(39, 153, 214, 0.35);
+  	cursor: pointer;
+  	opacity: 60%;
+  	transition: border-radius 0.15s ease-in, box-shadow 0.15s ease-out;
+  	font-size: 30px;}
+.squad-button:hover {
+  	box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 5);
+  	border-radius: 16px;}
+
+#first {
+	color: rgba(255,255,255, 100);
+	border: 1px solid cyan;
+	background: #040194;
+	left: 7%;
+	top: 20%;}
+#first:hover {background: darkblue;}
+
+#second {
+	left: 52%;
+	top: 20%;
+	color: rgba(255,255,255, 100);
+	border: 1px solid lightgreen;
+	background: green;}
+#second:hover {background: darkgreen;}
+
+#third {
+	left: 7%;
+	top: 60%;
+	color: rgba(255,255,255, 100);
+	border: 1px solid pink;
+	background: red;}
+#third:hover {background: darkred;}
+
+#fourth {
+	left: 52%;
+	top: 60%;
+	color: rgba(255,255,255, 100);
+	border: 1px solid lightyellow;
+	background: #edcd18;}
+#fourth:hover {background: #e6c139;}
+}
