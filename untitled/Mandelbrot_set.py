@@ -1,16 +1,20 @@
 import pygame
 pygame.init()
 
-size = 700
+size = 600
 win = pygame.display.set_mode((size, size))
-detalisation = 40
-scale = 1
+detalisation = 20
+scale = 0.25
+xpos = 0
+ypos = 0
+default_color = (255, 255, 255)
 
 pygame.display.set_caption("Mandelbrot set")
 
 for x in range(size):
     for y in range(size):
-        i, j = (x - size // 2) / (size // 4), (y - size // 2) / (size //4)
+        i = (x - size // 1.5 + xpos) / (size // (1/scale))
+        j = (y - size // 2 + ypos) / (size // (1/scale))
         c = (i + j * (-1)**.5)
 
         In_Mandelbrot = True
@@ -20,8 +24,9 @@ for x in range(size):
             if abs(z) >= 2:
                 In_Mandelbrot = False
                 break
+        default_color = (255, 255, 255)
         if In_Mandelbrot:
-            pygame.draw.line(win, (255, 255, 255), (x, y), (x+1, y+1), 1)
+            pygame.draw.line(win, default_color, (x, y), (x+1, y+1), 1)
 
 RUN = True
 while RUN:
