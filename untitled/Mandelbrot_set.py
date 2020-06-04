@@ -4,6 +4,7 @@ Function keys:
 ←, ↑, →, ↓ - Moving of camera relative to the image
 h, l - Increasind and decreasing Image detalisation
 p, m - "Moving" closer and further "camera" relative to the image
+q - quit
 
 -----------------------------------------------------------------
 
@@ -13,18 +14,19 @@ p, m - "Moving" closer and further "camera" relative to the image
 ←, ↑, →, ↓ - Движение "камеры" относительно рисунка в нужном направлении
 h, l - Повышение и понижение детализации изображения
 p, m - "Приближение" и "Отдаление" "Камеры" от изображения
+q - выход
 """
 
 import pygame  #Import of library, which we will draw it with / Импорт библиотеи, с помощью которой отрисовываем
 pygame.init()  # initialization of pygame / Инициализируем пайгейм
 
-detalisation = 5  # Value will change detalisation of figure (1 will make circle, 40 is good quality)
+detalisation = 10000  # Value will change detalisation of figure (1 will make circle, 40 is good quality)
 scale = 0.25  # Size of drawn figure / Размер отрисовываемой фигуры
 xpos = 0  # figure position on X axis / Позиция  фигуры по оси абсцисс
 ypos = 0  # figure position on Y axis / Позиция фигуры по оси оординат
-size = 600  # Window size / Размер окна
+size = 1000  # Window size / Размер окна
 
-win = pygame.display.set_mode((size, size))  # making window of nedded size / Создаём окно нужного размера
+win = pygame.display.set_mode((size, size), pygame.FULLSCREEN)  # making window of nedded size / Создаём окно нужного размера
 pygame.display.set_caption("Mandelbrot set")  # window title / заголовок в шапке окна
 
 
@@ -45,6 +47,7 @@ def MandelbrotDraw(detalisation=detalisation, scale=scale, xpos=xpos, ypos=ypos)
                     break  #  If dot not in set going to the next / Если точка вне множества, переходим к следующей
             if In_Mandelbrot:
                 pygame.draw.line(win, (255, 255, 255), (x, y), (x+1, y+1), 1)  # Draw dot of set / Рисуем одну точку множества
+                pygame.display.flip()
     pygame.display.flip()  # Updating screen / Обновляем экран
 
 
@@ -55,7 +58,9 @@ while RUN:
         if event.type == pygame.QUIT:
             RUN = False  # Pygame library standart loop / Стандартный цикл библиотеки pygame
         elif event.type == pygame.KEYDOWN:  # Check for button press / Проверка нажатия клавиш
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_q:
+                RUN = False
+            elif event.key == pygame.K_LEFT:
                 xpos -= 30  # From here / Отсюда
                 MandelbrotDraw(detalisation, scale, xpos, ypos)
             elif event.key == pygame.K_RIGHT:
