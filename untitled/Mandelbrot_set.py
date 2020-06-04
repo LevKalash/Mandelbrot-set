@@ -20,13 +20,13 @@ q - выход
 import pygame  #Import of library, which we will draw it with / Импорт библиотеи, с помощью которой отрисовываем
 pygame.init()  # initialization of pygame / Инициализируем пайгейм
 
-detalisation = 10000  # Value will change detalisation of figure (1 will make circle, 40 is good quality)
+detalisation = 20  # Value will change detalisation of figure (1 will make circle, 40 is good quality)
 scale = 0.25  # Size of drawn figure / Размер отрисовываемой фигуры
 xpos = 0  # figure position on X axis / Позиция  фигуры по оси абсцисс
 ypos = 0  # figure position on Y axis / Позиция фигуры по оси оординат
-size = 1000  # Window size / Размер окна
+size = 600  # Window size / Размер окна
 
-win = pygame.display.set_mode((size, size), pygame.FULLSCREEN)  # making window of nedded size / Создаём окно нужного размера
+win = pygame.display.set_mode((size, size))  # ,  pygame.FULLSCREEN)  # making window of nedded size / Создаём окно нужного размера
 pygame.display.set_caption("Mandelbrot set")  # window title / заголовок в шапке окна
 
 
@@ -38,15 +38,22 @@ def MandelbrotDraw(detalisation=detalisation, scale=scale, xpos=xpos, ypos=ypos)
             j = (y - size // 2 + ypos) / (size // (1/scale))  # setting center of picture / устанавливаем центр картинки
             c = (i + j * (-1)**.5)  # Complex number c from formula  of Mondelbrot set (z[n+1] = z[n]^2 + c) / Число из формулы множества мондельброта
 
-            In_Mandelbrot = True
             z = 0  # condition of Formula working / Условия для  работы формулы
-            for i in range(detalisation):
+            color_iter = 0  # variable for painting / переменная для раскрашивания
+            while (color_iter < detalisation):
                 z = z**2 + c  # Calculating for every dot on every iteration / на каждой итерации рассчитываем точку по формуле
                 if abs(z) >= 2:  # Check for going beyond the set / Проверка на выход за пределы множества
-                    In_Mandelbrot = False
                     break  #  If dot not in set going to the next / Если точка вне множества, переходим к следующей
-            if In_Mandelbrot:
-                pygame.draw.line(win, (255, 255, 255), (x, y), (x+1, y+1), 1)  # Draw dot of set / Рисуем одну точку множества
+
+                color_iter += 1
+                brightness = color_iter * 255 / detalisation  # paint brightness / яркость цвета
+                if color_iter == detalisation:
+                    brightness = 0
+                r = brightness * .5  # setting rgb color params / устанавливаем параметры цвета в rgb-формате
+                g = brightness * .25
+                b = brightness * .75
+
+                pygame.draw.line(win, (r, g, b), (x, y), (x+1, y+1), 1)  # Draw dot of set / Рисуем одну точку множества
                 pygame.display.flip()
     pygame.display.flip()  # Updating screen / Обновляем экран
 
