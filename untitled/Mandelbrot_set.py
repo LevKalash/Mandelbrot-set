@@ -20,13 +20,13 @@ q - выход
 import pygame  #Import of library, which we will draw it with / Импорт библиотеи, с помощью которой отрисовываем
 pygame.init()  # initialization of pygame / Инициализируем пайгейм
 
-detalisation = 20  # Value will change detalisation of figure (1 will make circle, 40 is good quality)
+detalisation = 10000  # Value will change detalisation of figure (1 will make circle, 40 is normal quality, 10000 looks well)
 scale = 0.25  # Size of drawn figure / Размер отрисовываемой фигуры
 xpos = 0  # figure position on X axis / Позиция  фигуры по оси абсцисс
 ypos = 0  # figure position on Y axis / Позиция фигуры по оси оординат
-size = 600  # Window size / Размер окна
+size = 1000  # Window size / Размер окна
 
-win = pygame.display.set_mode((size, size))  # ,  pygame.FULLSCREEN)  # making window of nedded size / Создаём окно нужного размера
+win = pygame.display.set_mode((size, size), pygame.FULLSCREEN)  # making window of nedded size / Создаём окно нужного размера
 pygame.display.set_caption("Mandelbrot set")  # window title / заголовок в шапке окна
 
 
