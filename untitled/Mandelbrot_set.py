@@ -46,15 +46,16 @@ def MandelbrotDraw(detalisation=detalisation, scale=scale, xpos=xpos, ypos=ypos)
                     break  #  If dot not in set going to the next / Если точка вне множества, переходим к следующей
 
                 color_iter += 1
-                brightness = color_iter * 255 / detalisation  # paint brightness / яркость цвета
-                if color_iter == detalisation:
-                    brightness = 0
-                r = brightness * .5  # setting rgb color params / устанавливаем параметры цвета в rgb-формате
-                g = brightness * .25
-                b = brightness * .75
+                if (0 < (xpos + x) < size) and (0 < (ypos + y) < size):  # Condition of new dot is on screen
+                    brightness = color_iter * 255 / detalisation  # paint brightness / яркость цвета
+                    if color_iter == detalisation:
+                        brightness = 0
+                    r = brightness * .5  # setting rgb color params / устанавливаем параметры цвета в rgb-формате
+                    g = brightness * .25
+                    b = brightness * .75
 
-                pygame.draw.line(win, (r, g, b), (x, y), (x+1, y+1), 1)  # Draw dot of set / Рисуем одну точку множества
-                pygame.display.flip()
+                    pygame.draw.line(win, (r, g, b), (x, y), (x+1, y+1), 1)  # Draw dot of set / Рисуем одну точку множества
+                    pygame.display.flip()
     pygame.display.flip()  # Updating screen / Обновляем экран
 
 
