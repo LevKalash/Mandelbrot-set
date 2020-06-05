@@ -20,7 +20,7 @@ q - выход
 import pygame  #Import of library, which we will draw it with / Импорт библиотеи, с помощью которой отрисовываем
 pygame.init()  # initialization of pygame / Инициализируем пайгейм
 
-detalisation = 10000  # Value will change detalisation of figure (1 will make circle, 40 is good quality)
+detalisation = 1000  # Value will change detalisation of figure (1 will make circle, 40 is good quality)
 scale = 0.25  # Size of drawn figure / Размер отрисовываемой фигуры
 xpos = 0  # figure position on X axis / Позиция  фигуры по оси абсцисс
 ypos = 0  # figure position on Y axis / Позиция фигуры по оси оординат
@@ -45,8 +45,9 @@ def MandelbrotDraw(detalisation=detalisation, scale=scale, xpos=xpos, ypos=ypos)
                 if abs(z) >= 2:  # Check for going beyond the set / Проверка на выход за пределы множества
                     In_Mandelbrot = False
                     break  #  If dot not in set going to the next / Если точка вне множества, переходим к следующей
-            if In_Mandelbrot:
-                pygame.draw.line(win, (255, 255, 255), (x, y), (x+1, y+1), 1)  # Draw dot of set / Рисуем одну точку множества
+            on_screen = (0 < (xpos + x) < size) and (0 < (ypos + y) < size)  # Condition of new dot is on screen
+            if In_Mandelbrot and on_screen:
+                pygame.draw.rect(win, (255, 255, 255), (x, y, 1, 1))  # Draw dot of set / Рисуем одну точку множества
                 pygame.display.flip()
     pygame.display.flip()  # Updating screen / Обновляем экран
 
